@@ -10,10 +10,6 @@
       {% include social.html %}
     </div>
 
-    <a id="sidebar-avatar" href="{{ "/" | prepend: site.baseurl }}">
-      <img id="sidebar-avatar-img" alt="{{ site.tittle }}" src="{{ site.avatar | prepend: site.baseurl }}"/>
-    </a>
-
     <ul id="sidebar-tags">
       <li class="sidebar-tag active" data-filter="recent">最新文章</li>
       {% if site.filter == 'category' %}
