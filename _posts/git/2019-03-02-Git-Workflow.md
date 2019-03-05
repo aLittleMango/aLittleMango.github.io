@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git Workflow工作流程
-category: git
+category: Git
 tags: git,workflow
 keywords: workflow
 description:
