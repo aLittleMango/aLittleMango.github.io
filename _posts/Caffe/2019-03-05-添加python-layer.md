@@ -112,7 +112,7 @@ top: "images"
 python_param{
     module: "MyPythonLayer" # module 就是我们 python 层文件的名字
     layer: "myPythonLayer"  # myPythonLayer 就写 python 文件里面的class的名字
-    param_str: "{'source_dir': '/home/sai/code/face_detection/train/lfw_5590','target_size': 224,'batch_size': 50 }"
+    param_str: "'source_dir': '/home/sai/code/face_detection/train/lfw_5590','target_size': 224,'batch_size': 50"
     }
 }
 ```
