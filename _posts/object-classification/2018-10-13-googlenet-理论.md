@@ -1,7 +1,7 @@
 ---
 layout: post
 title: googlenet 理论
-category: object-classification
+category: 图像分类
 tags: googlenet
 keywords: googlenet
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Faster RCNN 理论
-category: object-detection
+category: 目标检测
 tags: Faster RCNN
 keywords: Anchor,RPN,Fast-RCNN + RPN
 description:
