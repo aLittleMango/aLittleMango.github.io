@@ -34,7 +34,7 @@ ga:
   url: chiemon.github.io
 
 # Build settings
-permalink: /:year/:month/:day/:title.html
+permalink: /:year/:month/:day/:title.html # 博文的固定链接
 markdown: kramdown
 highlighter: rouge
 mathjax: disabled
