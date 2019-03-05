@@ -1,5 +1,5 @@
 ---
-title: Why Blog
+title: chiemon Blog
 layout: post
 ---
 
