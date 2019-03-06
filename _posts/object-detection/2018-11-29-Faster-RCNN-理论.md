@@ -2,8 +2,8 @@
 layout: post
 title: Faster RCNN 理论
 category: 目标检测
-tags: faster rcnn
-keywords: Anchor,RPN,Fast-RCNN + RPN
+tags: faster-rcnn
+keywords: Anchor, RPN, Fast-RCNN + RPN
 description:
 ---
 
