@@ -49,16 +49,3 @@ cd ../lib64
 cp -a lib* /home/michael/local/cuda_8.0.61/lib64
 ```
 这里cudnn已经加入到cuda的包含目录里面了，也可以不放进cuda里面，放外面之后要改环境变量
-
-## 三、版本查看
-
-### 1. 查看cuda版本
-
-```bash
-$ cat /usr/local/cuda/version.txt
-```
-
-### 2. 查看cudnn版本
-```bash
-$ cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2
-```
