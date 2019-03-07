@@ -19,9 +19,9 @@ description:
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-1.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/1.png">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-2.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/2.png">
 
 </div>
 
@@ -34,14 +34,14 @@ description:
 ### 1.2 计算Anchors
 
 在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-3.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/3.png">
 ），3个aspect ratio( {1:1,1:2,2:1} )
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-4.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/4.png">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-5.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
 
 </div>
 
@@ -55,7 +55,7 @@ description:
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-6.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/6.png">
 
 </div>
 
@@ -66,21 +66,21 @@ description:
 ### 1.4 定义损失函数
 
 对于每个anchor，首先在后面接上一个二分类softmax，有2个score 输出用以表示其是一个物体的概率与不是一个物体的概率
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-7.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/7.png">
 , 然后再接上一个bounding box的regressor 输出代表这个anchor的4个坐标位置（
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-8.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
 ），因此RPN的总体Loss函数可以定义为：
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-9.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/9.png">
 
 </div>
 
 i 表示第 i 个anchor，当anchor是正样本时
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-10.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
 = 1，是负样本则=0 。
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-11.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/11.png">
 表示一个与正样本 anchor 相关的ground true box 坐标；
 
 每个正样本anchor 只可能对应一个ground true box：
@@ -88,39 +88,39 @@ i 表示第 i 个anchor，当anchor是正样本时
 
 x, y, w, h分别表示box的中心坐标和宽高；
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-12.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/12.png">
 分别表示 predicted box, anchor box, and ground truth box (y,w,h同理);<br>
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-8.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
 表示predict box相对于anchor box的偏移；<br>
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-11.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/11.png">
 表示ground true box相对于anchor box的偏移，学习目标自然就是让前者接近后者的值；
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-13.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/13.png">
 <br>
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-14.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/14.png">
 
 </div>
 
-其中<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-20.png">
+其中<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/20.png">
 是：
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-15.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/15.png">
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-16.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/16.png">
 
 </div>
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-10.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
 表示这些regressor的loss指针对正样本而言，因为负样本时
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-10.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
 =0该项被消去；
 <br>
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-21.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/21.png">
 是关于两种类别 (object vs. not object) 的log loss；
 
 ### 1.5 训练RPN
@@ -149,7 +149,7 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-17.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/17.png">
 
 </div>
 
@@ -159,7 +159,7 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-18.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/18.png">
 
 </div>
 
@@ -183,6 +183,6 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN-19.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/19.png">
 
 </div>

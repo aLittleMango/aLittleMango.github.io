@@ -13,7 +13,7 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-1.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/1.png">
 
 </div>
 
@@ -37,7 +37,7 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-2.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/2.png">
 
 </div>
 
@@ -45,7 +45,7 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-3.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/3.png">
 
 </div>
 
@@ -53,7 +53,7 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-4.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/4.png">
 
 </div>
 
@@ -70,7 +70,7 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-5.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/5.png">
 
 </div>
 
@@ -94,21 +94,21 @@ Inception架构的主要思想是找出如何用密集成分来近似最优的�
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-6.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/6.png">
 
 </div>
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-7.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/7.png">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-9.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/9.png">
 
 ## 5. Inception V3结构
 
 大卷积核完全可以由一系列的3x3卷积核来替代，那能不能分解的更小一点呢。文章考虑了 nx1 卷积核，如下图所示的取代3x3卷积：于是，任意nxn的卷积都可以通过1xn卷积后接nx1卷积来替代。实际上，作者发现在网络的前期使用这种分解效果并不好，还有在中度大小的feature map上使用效果才会更好，对于mxm大小的feature map,建议m在12到20之间。用nx1卷积来代替大卷积核，这里设定n=7来应对17x17大小的feature map。该结构被正式用在GoogLeNet V2中。
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-8.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/8.png">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/googlenet-10.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/GoogleNet/10.png">
 
 ## 6. Inception V4结构
 
