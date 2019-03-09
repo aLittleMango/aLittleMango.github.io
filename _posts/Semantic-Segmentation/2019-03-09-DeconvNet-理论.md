@@ -6,8 +6,6 @@ tags: deconvnet
 description: deconvnet
 ---
 
-![](https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png)
-
 $$E=mc^2$$ is a inline formula
 
 $$
@@ -15,3 +13,5 @@ $$
 \dot{y} &= \rho x - y - xz \\
 \dot{z} &= -\beta z + xy \end{aligned}
 $$
+
+![](https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png)
