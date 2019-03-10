@@ -16,3 +16,5 @@
 - 三栏布局（master分支，基于[3-Jekyll](https://github.com/P233/3-Jekyll)）
 - 三栏布局 (bootstrap-based分支，基于Bootstrap)
 - 单栏布局（first-ui分支，基于Bootstrap）
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
