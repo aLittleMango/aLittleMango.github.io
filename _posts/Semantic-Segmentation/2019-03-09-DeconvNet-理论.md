@@ -6,8 +6,6 @@ tags: deconvnet
 description: deconvnet
 ---
 
-$$W\left(x\right)=$$
-
 <div>
 $$
 \mathbf{V}_1 \times \mathbf{V}_2 =
@@ -23,21 +21,21 @@ $$
 $$
 W\left(x\right)=
 \begin{cases}
- & \left(a+2\right)\left|x\right|^{3}-\left(a+3\right)\left|x\right |^{2}+1 \text{ for } \left|x\right|\leqslant1 \\
- & a\left|x\right|^{3}-5a\left|x\right|^{2}+8a\left|x\right|-4a \text{ for } 1<\left|x\right|<2 \\
- & 0 \text{ otherwise }
+ \left(a+2\right)\left|x\right|^{3}-\left(a+3\right)\left|x\right |^{2}+1 & \text{ for } \left|x\right|\leqslant1 \\
+ a\left|x\right|^{3}-5a\left|x\right|^{2}+8a\left|x\right|-4a & \text{ for } 1<\left|x\right|<2 \\
+ 0 & \text{ otherwise }
 \end{cases}
 $$
 </div>
 
 <div>
 $$
-\begin{aligned}
+\begin{align}
   \nabla\times\vec{\mathbf{B}}-\frac{1}{c}\frac{\partial\vec{\mathbf{E}}}{\partial t} &= \frac{4\pi}{c}\vec{\mathbf{j}} \\
   \nabla\cdot\vec{\mathbf{E}} &= 4\pi\rho \\
   \nabla\times\vec{\mathbf{E}}+\frac{1}{c}\frac{\partial\vec{\mathbf{B}}}{\partial t} &= \vec{\mathbf{0}} \\
   \nabla\cdot\vec{\mathbf{B}} &= 0
-\end{aligned}
+\end{align}
 $$
 </div>
 
