@@ -25,6 +25,9 @@ description:
 
 </div>
 
+{:.center}
+![](/img/Faster-RCNN/2.png)
+
 **具体过程**
 
 ### 1.1 得到最终用来预测的feature map
