@@ -9,11 +9,11 @@ description:
 
 ## 1. Gitflow分支
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Git/3.jpg"/>
 
-</div>
+</center>
 
 |分支|名称|作用|
 |:---:|:---:|:---:|
@@ -36,35 +36,35 @@ description:
 - **master:** 对外发布产品使用的分支，该分支的提交必须是最接近对外上线的版本，不允许在该分支上进行开发，要始终保持该分支的稳定。
 - **develop:** 内部开发产品所用的分支，该分支的最新提交必须是一个相对稳定的测试版本，同样地，不允许在该分支上面进行开发
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Git/4.png"/>
 
-</div>
+</center>
 
 - **feature:** 新功能分支，每个新的功能都应该创建一个独立的分支，从develop分支派生出来，功能开发完成之后合并到develop分支，不允许功能未开发完成便合并到develop分支。新功能提交应该从不直接与master分支交互。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Git/5.png"/>
 
-</div>
+</center>
 
 - **release:** 发布前的测试分支，一旦开发的功能满足发布条件或者预定发布日期将近，应该合并所有的功能分支到develop分支，并在develop分支开出一个release分支，在这个分支上，不能在添加新的功能，只能修复bug，一旦到了发布日期，该分支就要合并到master和develop分支，并且打出版本的标签。 另外，这些从新建发布分支以来的做的修改要合并回develop分支
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Git/6.png"/>
 
-</div>
+</center>
 
 - **hotfix:** 修复分支，用于给产品发布版本快速生成补丁, 在master上创建的分支, 这是唯一可以直接从master分支fork出来的分支, 修复问题后，它应该合并回master和develop分支，然后在master分支上打一个新的标签。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Git/7.png"/>
 
-</div>
+</center>
 
 ## 4. 开发流程
 
