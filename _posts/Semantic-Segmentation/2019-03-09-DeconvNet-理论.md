@@ -62,4 +62,8 @@ $$
 import tensorflow as tf
 ```
 
-![](https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png)
+<center>
+
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png">
+
+</center>
