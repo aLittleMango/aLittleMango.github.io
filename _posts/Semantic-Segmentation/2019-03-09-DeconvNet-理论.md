@@ -6,6 +6,8 @@ tags: deconvnet
 description: deconvnet
 ---
 
+$$W\left(x\right)=$$
+
 <div>
 $$
 \mathbf{V}_1 \times \mathbf{V}_2 =
