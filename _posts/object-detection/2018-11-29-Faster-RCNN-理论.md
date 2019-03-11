@@ -25,8 +25,9 @@ description:
 
 </div>
 
-{:.center}
-![](/img/Faster-RCNN/2.png)
+<center>
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/2.png">
+</center>
 
 **具体过程**
 
