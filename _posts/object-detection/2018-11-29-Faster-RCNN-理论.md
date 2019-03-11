@@ -17,15 +17,9 @@ description:
 
 这个网络的结果就是卷积层的每个点都有有关于k个achor boxes的输出，包括是不是物体，调整box相应的位置。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/1.png">
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/2.png">
-
-</div>
-
-<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/2.png">
 
@@ -41,13 +35,13 @@ description:
 
 在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积 $\left\\{ 128^{2}, 256^{2}, 521^{2} \right\\}$），3 个aspect ratio( $\left\\{ 1:1, 1:2, 2:1 \right\\}$)。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/3.png">
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/4.png">
 
-</div>
+</center>
 
 ### 1.3 关于正负样本的划分
 
@@ -57,11 +51,11 @@ description:
 
 2. 对a)剩余的anchor，如果其与某个标定区域重叠比例大于0.7，记为正样本（每个ground true box可能会对应多个正样本anchor；但每个正样本anchor 只可能对应一个grand true box）；如果其与任意一个标定的重叠比例都小于0.3，记为负样本；
 
-    <div style="text-align:center">
+    <center>
 
     <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
 
-    </div>
+    </center>
 
 3. 对a\), b\)剩余的 anchor，弃去不用。
 
@@ -102,11 +96,11 @@ t_{\omega}^{\ast} = \log \left ( \omega^{\ast} \right / \omega_{\alpha}),& t_{h}
 $$
 </div>
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/6.png">
 
-</div>
+</center>
 
 其中 $L_{reg}$ 是：
 
@@ -120,11 +114,11 @@ smooth_{L_{1}}\left ( x \right ) =
 $$
 </div>
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/7.png">
 
-</div>
+</center>
 
 $p_{i}^{\ast}$ 表示这些regressor的loss指针对正样本而言，因为负样本时 $p_{i}^{\ast} = 0$ 该项被消去；
 
@@ -154,21 +148,21 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 2. 用Fast R-CNN的网络参数去初始化RPN。之后不断迭代这个过程，即循环训练RPN、Fast-RCNN；
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
 
-</div>
+</center>
 
 ### 2.2 Approximate joint training
 
 这里与前一种方法不同，不再是串行训练RPN和Fast-RCNN，而是尝试把二者融入到一个网络内，具体融合的网络结构如下图所示，可以看到，proposals是由中间的RPN层输出的，而不是从网络外部得到。需要注意的一点，名字中的"approximate"是因为反向传播阶段RPN产生的cls score能够获得梯度用以更新参数，但是proposal的坐标预测则直接把梯度舍弃了，这个设置可以使backward时该网络层能得到一个解析解（closed results），并且相对于Alternating traing减少了25-50%的训练时间。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/9.png">
 
-</div>
+</center>
 
 ### 2.3 Non-approximate training
 
@@ -188,8 +182,8 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 4. 仍然固定共享的那些网络层，把Fast-RCNN特有的网络层也加入进来，形成一个unified network，继续训练，fine tune Fast-RCNN特有的网络层，此时，该网络已经实现我们设想的目标，即网络内部预测proposal并实现检测的功能。
 
-<div style="text-align:center">
+<center>
 
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
 
-</div>
+</center>
