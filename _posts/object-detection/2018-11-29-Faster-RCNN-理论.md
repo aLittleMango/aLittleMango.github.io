@@ -11,7 +11,7 @@ description:
 
 ## 1. 区域生成网络——RPN（Region Proposal Networks）
 
-先通过对应关系把feature map的点映射回原图，在每一个对应的原图设计不同的固定尺度窗口（bbox），根据该窗口与ground truth的IOU给它正负标签，让它学习里面是否有object，这样就训练一个网络（Region Proposal Network）。
+先通过对应关系把 feature map 的点映射回原图，在每一个对应的原图设计不同的固定尺度窗口（bbox），根据该窗口与ground truth的IOU给它正负标签，让它学习里面是否有object，这样就训练一个网络（Region Proposal Network）。
 
 由于我们只需要找出大致的地方，无论是精确定位位置还是尺寸，后面的工作都可以完成，作者对bbox做了三个固定：固定尺度变化（三种尺度），固定scale ratio变化（三种ratio），固定采样方式（只在feature map的每个点在原图中的对应ROI上采样，反正后面的工作能进行调整） 。如此就可以降低任务复杂度。可以在特征图上提取proposal之后，网络前面就可以共享卷积计算结果（SPP减少计算量的思想）。
 
@@ -33,15 +33,13 @@ description:
 
 ### 1.2 计算Anchors
 
-在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/3.png">
-），3个aspect ratio( {1:1,1:2,2:1} )
+在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积 $\left \{ 128^{2}, 256^{2}, 521^{2} \right \}$），3个aspect ratio($\left \{ 1:1, 1:2, 2:1 \right \}$)
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/4.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/3.png">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/4.png">
 
 </div>
 
@@ -55,73 +53,76 @@ description:
 
 <div style="text-align:center">
 
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
+
+</div>
+
+3. 对a\), b\)剩余的 anchor，弃去不用。
+
+4. 跨越图像边界的 anchor 弃去不用
+
+### 1.4 定义损失函数
+
+对于每个anchor，首先在后面接上一个二分类softmax，有2个score 输出用以表示其是一个物体的概率与不是一个物体的概率 $p_i$, 然后再接上一个bounding box的regressor 输出代表这个anchor的4个坐标位置（$t_i$），因此RPN的总体Loss函数可以定义为：
+
+$$
+L\left ( \left \{ p_{i} \right \}\left \{ t_{i} \right \} \right ) = \frac{1}{N_{cls}} \sum_{i} L_{cls}\left ( p_{i},p_{i}^{\ast} \right ) + \lambda \frac{1}{N_{reg}} \sum_{i} p_{i}^{\ast} L_{reg} \left ( t_{i},t_{i}^{\ast} \right )
+$$
+
+i 表示第 i 个 anchor，当 anchor 是正样本时 $p_{i}^{\ast} = 1$，是负样本则=0；
+
+$t_{i}^{\ast}$ 表示一个与正样本 anchor 相关的 ground true box 坐标；
+
+每个正样本 anchor 只可能对应一个ground true box；
+
+一个正样本 anchor 与某个 grand true box 对应，那么该 anchor 与 ground true box 的IOU要么是所有 anchor 中最大，要么大于0.7；
+
+x, y, w, h分别表示 box 的中心坐标和宽高；
+
+$x, x_{\alpha}, x^{\ast}$分别表示 predicted box, anchor box, and ground truth box (y,w,h同理)；
+
+$t_{i}$ 表示 predict box 相对于 anchor box 的偏移；
+
+$t_{i}^{\ast}$ 表示 ground true box 相对于 anchor box 的偏移，学习目标自然就是让前者接近后者的值；
+
+<div>
+$$
+\begin{matrix}
+t_{x} = \left ( x - x_{\alpha} \right ) / \omega_{\alpha},& t_{y} = \left ( y - y_{\alpha} \right ) / h_{\alpha},\\
+t_{\omega} = \log \left ( \omega \right / \omega_{a}),& t_{h} = \log \left ( h \right / h_{\alpha}),\\
+t_{x}^{\ast} = \left ( x^{\ast} - x_{\alpha} \right ) / \omega_{\alpha},& t_{y}^{\ast} = \left ( y^{\ast} - y_{\alpha} \right ) / h_{\alpha},\\
+t_{\omega}^{\ast} = \log \left ( \omega^{\ast} \right / \omega_{\alpha}),& t_{h}^{\ast} = \log \left ( h^{\ast} \right / h_{\alpha}),
+\end{matrix}
+$$
+</div>
+
+<div style="text-align:center">
+
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/6.png">
 
 </div>
 
-3. 对a\), b\)剩余的anchor，弃去不用。
+其中 $L_{reg}$ 是：
 
-4. 跨越图像边界的anchor弃去不用
+<div>
+$$
+smooth_{L_{1}}\left ( x \right ) =
+\begin{cases}
+0.5x^{2} & \left | x \right | \leq 1 \\
+\left | x \right | - 0.5 & \text{otherwise}
+\end{cases}
+$$
+</div>
 
-### 1.4 定义损失函数
+<div style="text-align:center">
 
-对于每个anchor，首先在后面接上一个二分类softmax，有2个score 输出用以表示其是一个物体的概率与不是一个物体的概率
 <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/7.png">
-, 然后再接上一个bounding box的regressor 输出代表这个anchor的4个坐标位置（
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
-），因此RPN的总体Loss函数可以定义为：
-
-<div style="text-align:center">
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/9.png">
 
 </div>
 
-i 表示第 i 个anchor，当anchor是正样本时
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
-= 1，是负样本则=0 。
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/11.png">
-表示一个与正样本 anchor 相关的ground true box 坐标；
+$p_{i}^{\ast}$ 表示这些regressor的loss指针对正样本而言，因为负样本时 $p_{i}^{\ast} = 0$ 该项被消去；
 
-每个正样本anchor 只可能对应一个ground true box：
-一个正样本anchor 与某个grand true box对应，那么该anchor与ground true box 的IOU要么是所有anchor中最大，要么大于0.7
-
-x, y, w, h分别表示box的中心坐标和宽高；
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/12.png">
-分别表示 predicted box, anchor box, and ground truth box (y,w,h同理);<br>
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
-表示predict box相对于anchor box的偏移；<br>
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/11.png">
-表示ground true box相对于anchor box的偏移，学习目标自然就是让前者接近后者的值；
-
-<div style="text-align:center">
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/13.png">
-<br>
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/14.png">
-
-</div>
-
-其中<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/20.png">
-是：
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/15.png">
-
-<div style="text-align:center">
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/16.png">
-
-</div>
-
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
-表示这些regressor的loss指针对正样本而言，因为负样本时
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
-=0该项被消去；
-<br>
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/21.png">
-是关于两种类别 (object vs. not object) 的log loss；
+$L_{cls}$ 是关于两种类别 (object vs. not object) 的 log loss；
 
 ### 1.5 训练RPN
 
@@ -149,7 +150,7 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/17.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/8.png">
 
 </div>
 
@@ -159,7 +160,7 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/18.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/9.png">
 
 </div>
 
@@ -183,6 +184,6 @@ n=3看起来很小，但是要考虑到这是非常高层的feature map，其siz
 
 <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/19.png">
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/10.png">
 
 </div>
