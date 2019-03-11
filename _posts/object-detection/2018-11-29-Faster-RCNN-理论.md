@@ -25,7 +25,7 @@ description:
 
 </div>
 
-***具体过程***
+**具体过程**
 
 ### 1.1 得到最终用来预测的feature map
 
@@ -33,7 +33,7 @@ description:
 
 ### 1.2 计算Anchors
 
-在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积 $\left \{ 128^{2}, 256^{2}, 521^{2} \right \}$），3 个aspect ratio( $\left \{ 1:1, 1:2, 2:1 \right \}$)。
+在feature map上的每个特征点预测多个region proposals。具体作法是：把每个特征点映射回原图的感受野的中心点当成一个基准点，然后围绕这个基准点选取k个不同scale、aspect ratio的anchor。论文中3个scale（三种面积 $\left\\{ 128^{2}, 256^{2}, 521^{2} \right\\}$），3 个aspect ratio( $\left\\{ 1:1, 1:2, 2:1 \right\\}$)。
 
 <div style="text-align:center">
 
