@@ -62,8 +62,4 @@ $$
 import tensorflow as tf
 ```
 
-<<<<<<< HEAD
 ![](https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png)
-=======
-![](https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/DeconvNet/1.png)
->>>>>>> 794f1ac544dd614f178c0298c0acaedef2bfa8e5
