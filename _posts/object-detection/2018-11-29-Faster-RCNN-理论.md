@@ -51,11 +51,11 @@ description:
 
 2. 对a)剩余的anchor，如果其与某个标定区域重叠比例大于0.7，记为正样本（每个ground true box可能会对应多个正样本anchor；但每个正样本anchor 只可能对应一个grand true box）；如果其与任意一个标定的重叠比例都小于0.3，记为负样本；
 
-<div style="text-align:center">
+    <div style="text-align:center">
 
-<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
+    <img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/5.png">
 
-</div>
+    </div>
 
 3. 对a\), b\)剩余的 anchor，弃去不用。
 
