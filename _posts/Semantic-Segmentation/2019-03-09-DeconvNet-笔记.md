@@ -1,6 +1,6 @@
 ---
 layout: post
-title: DeconvNet 理论
+title: DeconvNet 笔记
 category: 语义分割
 tags: deconvnet
 description: deconvnet

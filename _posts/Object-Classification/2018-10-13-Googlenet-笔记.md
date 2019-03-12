@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Googlenet 理论
+title: Googlenet 笔记
 category: 图像分类
 tags: googlenet
 keywords: googlenet
