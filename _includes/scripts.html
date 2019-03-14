@@ -10,9 +10,12 @@
 
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
+      extensions: ["tex2jax.js"],
+      jax: ["input/Tex","output/HTML-CSS"],
       tex2jax: {
         skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-        inlineMath: [['$','$'], ['\\(','\\)']],
+        inlineMath: [['$','$']],
+        displayMath: [['$$','$$']],
         processEscapes: true
       },
       TeX: {
@@ -26,6 +29,7 @@
         }
       },
       "HTML-CSS": {
+        availabelFonts: ["Tex"],
         linebreaks: {
           automatic: true
         }
