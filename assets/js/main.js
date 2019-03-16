@@ -86,7 +86,7 @@ $(function() {
 
     'pjax:complete': function () {
       $.getScript("//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_CHTML", function() {
-          MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+          // MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
           // entry-content是文章页的内容div的class
           var math = document.getElementsByClassName("entry-content")[0];
           MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
