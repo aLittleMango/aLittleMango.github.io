@@ -25,10 +25,8 @@ avatar: /img/chiemon-icon.jpg
 favicon: /img/favicon.ico
 
 # comment config
-# disqus:
-  #shortname: chiemon
-livere_uid: MTAyMC80MzEwNi8xOTY1Mg==
-
+disqus:
+  shortname: chiemon
 
 # google analytics config
 ga:
