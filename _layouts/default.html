@@ -6,10 +6,12 @@ layout: compress
   {% include head.html %}
   <body>
     {% include sidebar.html %}
+    {% include scripts.html %}
+    {% include mathjax.html %}
+
 
     <main id="main" class="open">
       {{ content }}
-      {% include comment.html %}
 
       <div class="footer">
         <div class="container">
@@ -18,6 +20,8 @@ layout: compress
         </div>
       </div>
     </main>
+
+    {% include comment.html %}
 
     <button id="menu" class="open">
       <span id="menu-icons"></span>
@@ -30,9 +34,5 @@ layout: compress
       <span id="post-toc-title">Table of Contents</span>
       <ul id="post-toc-ul"></ul>
     </div>
-
-    {% include scripts.html %}
-    {% include mathjax.html %}
-
   </body>
 </html>
