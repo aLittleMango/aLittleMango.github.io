@@ -24,9 +24,11 @@ github: chiemon
 avatar: /img/chiemon-icon.jpg
 favicon: /img/favicon.ico
 
-# disqus config
-disqus:
-  shortname: chiemon
+# comment config
+# disqus:
+  #shortname: chiemon
+livere_uid: MTAyMC80MzEwNi8xOTY1Mg==
+
 
 # google analytics config
 ga:
