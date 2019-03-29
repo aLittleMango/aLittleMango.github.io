@@ -9,6 +9,12 @@ description:
 
 ***Faster RCNN真正实现了完全end-to-end的CNN目标检测模型***
 
+<center>
+
+<img src="https://raw.githubusercontent.com/chiemon/chiemon.github.io/master/img/Faster-RCNN/11.png">
+
+</center>
+
 ## 1. 区域生成网络——RPN（Region Proposal Networks）
 
 先通过对应关系把 feature map 的点映射回原图，在每一个对应的原图设计不同的固定尺度窗口（bbox），根据该窗口与ground truth的IOU给它正负标签，让它学习里面是否有object，这样就训练一个网络（Region Proposal Network）。
