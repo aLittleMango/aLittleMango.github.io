@@ -1,11 +1,10 @@
 ---
 layout: post
-title: 保存与加载模型
+title: Saving and Loading Models
 category: Pytorch
 tags: pytorch
 description:
 ---
-
 
 ## 1. state_dict
 
@@ -15,7 +14,7 @@ description:
 torch.nn.Module.state_dict(destination=None, prefix='', keep_vars=False)
 ```
 
-返回一个包含这个模型状态信息的字典。包含参数（weighs and biases）和持续的缓冲值（如：观测值的平均值）。只有具有可更新参数的层才会被保存在模型的 state_dict 数据结构中。
+返回一个包含模型状态信息的字典。包含参数（weighs and biases）和持续的缓冲值（如：观测值的平均值）。只有具有可更新参数的层才会被保存在模型的 state_dict 数据结构中。
 
 **eg**
 
@@ -25,8 +24,11 @@ module.state_dict().keys()
 
 # visiualize model
 model = torch.load('tensors.pth')
-for param_tensor in model['state_dict']:
-    print(param_tensor,"\t",model['state_dict'][param_tensor].size(),"\t",model['state_dict'][param_tensor].device)
+for param_tensor in m['state_dict']:
+    print('{0:<50}{1:<40}{2:<10}{3:<10}'.format(param_tensor,
+                                        str(model['state_dict'][param_tensor].size()),
+                                        str(model['state_dict'][param_tensor].device),
+                                        str(model['state_dict'][param_tensor].requires_grad)))
 ```
 
 ### 1.2 torch.optim.Optimizer.state_dict
