@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pytorch官方教程(一)——A 60 Minute Biltz
+title: Pytorch官方教程(一)—A 60 Minute Biltz
 category: Pytorch
 tags: pytorch
 description:
