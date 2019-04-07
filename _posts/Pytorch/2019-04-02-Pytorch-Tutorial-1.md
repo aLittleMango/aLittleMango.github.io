@@ -403,6 +403,7 @@ print(x.grad)
 
 在数学上，一个向量函数 $\vec{y}=f(\vec{x})$，$\vec{y}$ 对 $\vec{x}$ 求得的微分是一个雅可比矩阵：
 
+<div>
 $$
 \begin{split}J=\left(\begin{array}{ccc}
 \frac{\partial y_{1}}{\partial x_{1}} & \cdots & \frac{\partial y_{1}}{\partial x_{n}}\\
@@ -410,9 +411,11 @@ $$
 \frac{\partial y_{m}}{\partial x_{1}} & \cdots & \frac{\partial y_{m}}{\partial x_{n}}
 \end{array}\right)\end{split}
 $$
+</div>
 
 总体上讲，torch.autograd 是一个计算矢量雅可比矩阵乘积的引擎，即对于给定的向量 $v=\left(\begin{array}{cccc} v_{1} & v_{2} & \cdots & v_{m}\end{array}\right)^{T}$ 计算乘积 $v^{T}\cdot J$。如果 $v$ 是一个标量函数的梯度 $l=g\left(\vec{y}\right)$，即 $v=\left(\begin{array}{ccc}\frac{\partial l}{\partial y_{1}} & \cdots & \frac{\partial l}{\partial y_{m}}\end{array}\right)^{T}$，根据链式法则，矢量雅可比矩阵的乘积将会是 $l$ 对 $\vec{x}$ 的微分。
 
+<div>
 $$
 \begin{split}J^{T}\cdot v=\left(\begin{array}{ccc}
 \frac{\partial y_{1}}{\partial x_{1}} & \cdots & \frac{\partial y_{m}}{\partial x_{1}}\\
@@ -428,8 +431,9 @@ $$
 \frac{\partial l}{\partial x_{n}}
 \end{array}\right)\end{split}
 $$
+</div>
 
-（$v^{T}\cdot J$ 给出一个行向量，可以通过 J^{T}\cdot v 将其视为列向量。）
+（$v^{T}\cdot J$ 给出一个行向量，可以通过 $J^{T}\cdot v $ 将其视为列向量。）
 
 矢量雅可比矩阵乘积的这个特性使得将外部梯度输入到具有非标量输出的模型中非常方便。
 
