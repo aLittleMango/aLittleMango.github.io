@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pytorch官方教程(一)—Data Loading and Processing Tutorial
+title: Pytorch官方教程(二)—Data Loading and Processing Tutorial
 category: Pytorch
 tags: pytorch
 description:
