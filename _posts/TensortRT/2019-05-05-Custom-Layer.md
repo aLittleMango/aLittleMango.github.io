@@ -11,13 +11,13 @@ description:
 
 Custom Layer 通过继承 IPlugin类，对 TensorRT 的五个阶段分别实现。
 
-- 创建网络
-- 构建Engine
-- 序列化引擎
-- 反序列化引擎以
-- 执行推理Engine
+- 创建网络阶段
+- 构建 Engine 阶段
+- 序列化 Engine 阶段
+- 反序列化 Engine 阶段
+- 执行推理 Engine 阶段
 
-### 网络创建
+### 创建网络阶段
 
 网络创建需要告诉TensorRT该Custom Layer的output矩阵的维数，主要通过以下两种方法传递：
 
@@ -96,9 +96,9 @@ FCPlugin(const void* data, size_t length)
 
 ### 执行推理 Engine 阶段
 
-- initialize() terminate()——分别会在构建builder执行网络自动优化和创建/销毁执行Context时被调用。
+- initialize() and terminate()——分别会在构建 builder 执行网络自动优化和创建/销毁执行 Context 时被调用。
 
-    解释：更多情况下作为其他的资源管理使用，例如cudnn资源的初始化和销毁使用
+    解释：更多情况下作为其他的资源管理使用，例如 cudnn 资源的初始化和销毁使用
 
 - enqueue()——实现的是该Custom Layer在执行时具体的计算操作。
 
