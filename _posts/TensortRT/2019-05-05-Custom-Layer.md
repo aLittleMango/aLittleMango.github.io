@@ -60,7 +60,8 @@ virtual void serialize(void* buffer) override
 ```cpp
 void serializeFromDevice(char*& hostBuffer, Weights deviceWeights)
 {
-    cudaMemcpy(hostBuffer, deviceWeights.values, deviceWeights.count * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpy(hostBuffer, deviceWeights.values,
+            deviceWeights.count * sizeof(float), cudaMemcpyDeviceToHost);
     hostBuffer += deviceWeights.count * sizeof(float);
 }
 ```
@@ -72,7 +73,8 @@ Custom Layer 的反序列化过程是在反序列化整个模型时候完成的�
 ```cpp
 // deserialize the engine
 IRuntime* runtime = createInferRuntime(gLogger);
-ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(), gieModelStream->size(), &pluginFactory);
+ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(),
+                                    gieModelStream->size(), &pluginFactory);
 ```
 
 ```cpp
@@ -83,7 +85,8 @@ FCPlugin(const void* data, size_t length)
     mNbOutputChannels = read<int>(d);
     int biasCount = read<int>(d);
 
-    mKernelWeights = deserializeToDevice(d, mNbInputChannels * mNbOutputChannels);
+    mKernelWeights = deserializeToDevice(d, 
+                            mNbInputChannels * mNbOutputChannels);
     mBiasWeights = deserializeToDevice(d, biasCount);
     assert(d == a + length);
 }
@@ -136,13 +139,18 @@ bool isPlugin(const char* name) override
     return !strcmp(name, "ip2");
 }
 
-virtual nvinfer1::IPlugin* createPlugin(const char* layerName, const nvinfer1::Weights* weights, int nbWeights) override
+virtual nvinfer1::IPlugin* createPlugin(const char* layerName, 
+                const nvinfer1::Weights* weights, int nbWeights) override
 {
-    // there's no way to pass parameters through from the model definition, so we have to define it here exlicitly
+    // there's no way to pass parameters through from the model definition, 
+    // so we have to define it here exlicitly
     static const int NB_OUT_CHANNELS = 10;
-    assert(isPlugin(layerName) && nbWeights == 2 && weights[0].type == DataType::kFLOAT && weights[1].type == DataType::kFLOAT);
+    assert(isPlugin(layerName) && nbWeights == 2 && 
+                weights[0].type == DataType::kFLOAT && 
+                weights[1].type == DataType::kFLOAT);
     assert(mPlugin.get() == nullptr);
-    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(weights, nbWeights, NB_OUTPUT_CHANNELS));
+    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(weights, nbWeights, 
+                                        NB_OUTPUT_CHANNELS));
     return mPlugin.get();
 }
 ```
@@ -158,11 +166,13 @@ parser->setPluginFactory(pluginFactory);
 
 ```cpp
 // deserialization plugin implementation
-IPlugin* createPlugin(const char* layerName, const void* serialData, size_t serialLength) override
+IPlugin* createPlugin(const char* layerName, const void* serialData, 
+                      size_t serialLength) override
 {
     assert(isPlugin(layerName));
     assert(mPlugin.get() == nullptr);
-    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(serialData, serialLength));
+    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(serialData, 
+                                        serialLength));
     return mPlugin.get();
 }
 ```
@@ -170,6 +180,7 @@ IPlugin* createPlugin(const char* layerName, const void* serialData, size_t seri
 ```cpp
 // deserialize the engine
 IRuntime* runtime = createInferRuntime(gLogger);
-ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(), gieModelStream->size(), &pluginFactory);
+ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(), 
+                                    gieModelStream->size(), &pluginFactory);
 ```
 需要注意的是，在创建 Runtime时（反序列化的实现如前文 "Custom Layer实现" 中反序列化部分所示），这部分的实现默认使用字节流数据并认为认为在 initialize() 函数执行前数据已经准备就绪。
