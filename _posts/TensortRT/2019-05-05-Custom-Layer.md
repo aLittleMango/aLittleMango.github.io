@@ -180,7 +180,7 @@ IPlugin* createPlugin(const char* layerName, const void* serialData,
 ```cpp
 // deserialize the engine
 IRuntime* runtime = createInferRuntime(gLogger);
-ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(), 
+ICudaEngine* engine = runtime->deserializeCudaEngine(gieModelStream->data(),
                                     gieModelStream->size(), &pluginFactory);
 ```
 需要注意的是，在创建 Runtime时（反序列化的实现如前文 "Custom Layer实现" 中反序列化部分所示），这部分的实现默认使用字节流数据并认为认为在 initialize() 函数执行前数据已经准备就绪。
