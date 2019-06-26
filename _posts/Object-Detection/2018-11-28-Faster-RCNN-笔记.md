@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Faster RCNN 笔记
+title: Faster RCNN笔记
 category: 目标检测
 tags: faster-rcnn
 keywords: Anchor, RPN, Fast-RCNN + RPN
