@@ -18,3 +18,25 @@
 - 单栏布局（first-ui分支，基于Bootstrap）
 
 <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+|显示|mathjax|
+|:---:|:---:|
+|华体|\mathcal|
+|粗体|\mathbf|
+|>|\gt|
+|≥|\ge|
+|<|\lt|
+|≤|\le|
+|∇|\nabla|
+|∂|\partial|
+|*|\ast|
+|\|\||\parallel|
+
+```js
+<div>
+$$
+\begin{align*}
+\end{align*}
+$$
+</div>
+```
