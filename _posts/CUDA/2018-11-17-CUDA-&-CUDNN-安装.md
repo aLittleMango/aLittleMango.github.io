@@ -6,46 +6,141 @@ tags: cuda
 description:
 ---
 
-## 一、cuda安装
+安装流程
 
-### 1. 安装cuda_8.0.61
+- 安装 nvidia 显卡驱动
+- 禁用集成显卡
+- 安装 cuda —— runfile
+- 安装 cudnn
 
-安装cuda_8.0.61到指定路径  ${HOME}/local/cuda_8.0.61
-```bash
-$ chmod a+x cuda_8.0.61_375.26_linux.run
-$ ./cuda_8.0.61_375.26_linux.run
-```
+
+## 一、nvidia 显卡驱动安装
+
+nvidia 官网下载对应最新的显卡驱动。
+
+## 二、禁用集成显卡
+
+1. 在 /etc/modprobe.d 目录中创建文件 blacklist-nouveau.conf，并输入以下内容：
+
+    ```
+    blacklist nouveau
+    options nouveau modeset=0
+    ```
+
+2. 执行：
+
+    ```
+    sudo update-initramfs -u
+    ```
+
+3. 验证
+
+    ```
+    lsmod | grep nouveau
+    ```
+
+    若无内容输出，则表示禁用成功。
+
+## 三、cuda安装
+
+### 1. 下载
+
+nvidia 官网下载 cuda runfile
+
+### 2. 安装
+
+1. 重启电脑，按 Ctrl + Alt + F1 进入命令行模式，登陆账户;
+
+2. 关闭图形化界面;
+
+    ```bash
+    sudo service lightdm stop
+    ```
+
+3. 切换到下载好的 cuda runfile 文件所在路径;
+
+4. 进行安装
+
+    ```bash
+    sudo sh cuda_8.0.61_375.26_linux.run
+    ```
+
+    安装过程：
+
+    ```bash
+    Do accept the previously read EULA?
+    accept/decline/quit: accept
+
+    Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 xxx.xx?
+    (y)es/(n)o/(q)uit: n                          # 已单独安装了最新的显卡驱动
+
+    Install the CUDA xx Toolkit?
+    (y)es/(n)o/(q)uit: y
+
+    Enter Toolkit Location
+     [ default is /usr/local/cuda-xx ]:                         # 直接回车
+    
+    Do you want to install a symbolic link at /usr/local/cuda?
+    (y)es/(n)o/(q)uit: y
+
+    Install the CUDA xx Samples?
+    (y)es/(n)o/(q)uit: y
+
+    Enter CUDA Samples Location
+     [ default is /home/xxx ]:                                  # 直接回车
+
+    Installing the CUDA Toolkit in /usr/local/cuda-xx ...       # 等待安装完成
+    ```
+
+5. 重启图形化界面;
+
+    ```bash
+    sudo service lightdm restart
+    ```
+
+    会自动跳转到图形化界面，登录账户。
+
+6. 验证
+
+    ```bash
+    cd ~/NVIDIA_CUDA-XX_Samples
+
+    make -j8
+
+    cd bin/x86_64/linux/release
+
+    ./bandwidthTest
+
+    ./deviceQuery
+    ```
 
 ### 2. 添加本地环境变量
 
-```bash
-vim ~/.bashrc
-```
-末尾添加
-
-    export PATH=/home/michael/local/cuda_8.0.61/bin${PATH:+:${PATH}}
-    export LD_LIBRARY_PATH=/home/michael/local/cuda_8.0.61/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-    export C_INCLUDE_PATH=/home/michael/local/cuda_8.0.61/include${C_INCLUDE_PATH:+:${C_INCLUDE_PATH}}
-    export CPLUS_INCLUDE_PATH=/home/michael/local/cuda_8.0.61/include${CPLUS_INCLUDE_PATH:+:${CPLUS_INCLUDE_PATH}}
+    vim ~/.bashrc
+    # 末尾添加
+    export PATH=/home/michael/local/cuda_8.0.61/bin:$PATH
+    export LD_LIBRARY_PATH=/home/michael/local/cuda_8.0.61/lib64$LD_LIBRARY_PATH
+    export C_INCLUDE_PATH=/home/michael/local/cuda_8.0.61/include:$C_INCLUDE_PATH
+    export CPLUS_INCLUDE_PATH=/home/michael/local/cuda_8.0.61/include:$CPLUS_INCLUDE_PATH
 
 ### 3. 更新环境变量
-```bash
-$ source ~/.bashrc
-```
-### 4. 验证
 
-```bash
-$ nvcc -V
-```
+    source ~/.bashrc
 
-## 二、cudnn安装
+## 四、cudnn安装
 
-```bash
-tar -zxvf cudnn-8.0-linux-x64-v6.0.tgz    #解压出来的文件夹名称就叫cuda
+1. nvidia 官网下载与 cuda 版本对应的 cudnn.
 
-cd cuda/include
-cp cudnn.h /home/michael/local/cuda_8.0.61/include
-cd ../lib64
-cp -a lib* /home/michael/local/cuda_8.0.61/lib64
-```
-这里cudnn已经加入到cuda的包含目录里面了，也可以不放进cuda里面，放外面之后要改环境变量
+2. 解压，将解压文件夹中, include 目录下的文件拷贝或移动到 cuda 安装目录的头文件夹中.
+
+    ```bash
+    sudo mv cuda/include/* /usr/local/cuda-10.0/include/
+    ```
+
+    将解压文件中，lib 或 lib64 目录下的文件拷贝或移动到 cuda 安装目录的库文件夹中.
+
+    ```bash
+    sudo mv cuda/lib64/* /usr/local/cuda-10.0/lib64/
+    ```
+
+    这里 cudnn 放入到 cuda 的包含目录里面了，也可以不放进 cuda 里，放在外面之后要改环境变量。
