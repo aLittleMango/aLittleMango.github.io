@@ -7,6 +7,27 @@ keywords: 踩坑
 description:
 ---
 
+TorchScript is a limited statically typed subset of Python and requires some adaptations.
+
+Jit can be configured via jit config flag on module level. Unjittable code parts can be wrapped in @torch.jit.ignore.
+
+First I had to get rid of getattr calls and make all module names known during compile time.
+
+Res layers with name prefixes like 'backbone.layer1.' are moved to prefix backbone.res_layers.0. TorchScript supports iteration over constant module list (self.res_layers) and unrolls the loop in compile time.
+
+Normalization layers got fixed names like backbone.norm1.
+
+To maintain backward compatibility I've looked through pytorch load state dict machinery and decided to use load_state_dict_pre_hooks
+mmdet doesn't use native nn.Module.load_state_dict method and doesn't support hooks. I've changed the implementation.
+
+At this point I could track compatibility issues loading state dict in strict mode.
+
+load_state_dict_pre_hooks are implemented and I was able to use the snapshot that was done before the changes in this PR.
+
+In JIT mode I had to copy the hooks from nonjitted module instances to WeakScriptModuleProxy instances. The latter wrap compiled modules.
+
+After that I was able to use old state dict with JIT-compiled modules.
+
 ## Tricks
 
 1. 如果代码中有`if`条件控制，尽量避免使用`torch.jit.trace`来转换代码，因为它不能处理变化条件，如果非要用`trace`的话，可以把`if`条件控制改成别的形式，比如：
