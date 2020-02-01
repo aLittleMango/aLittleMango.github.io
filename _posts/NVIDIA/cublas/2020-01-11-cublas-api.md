@@ -108,8 +108,8 @@ cuBLAS函数库包含2类——功能函数和数学计算函数：
     |:---|:---|:---|:---|:---|
     |CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
     |CUDA_R_16F|CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
-    |CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|cublasHgemm(), cublasHgemmBatched(), cublasHgemmStridedBatched()|
-    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm, cublasGemmEx, cublasSgemmEx() NOTE: A conversion from CUDA_R_32F to CUDA_R_16F with round to nearest on the input values A/B is performed when Tensor are used|
+    |CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|cublasHgemm(), cublasHgemmBatched(),<br>cublasHgemmStridedBatched()|
+    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm, cublasGemmEx, cublasSgemmEx()<br>NOTE: A conversion from CUDA_R_32F to CUDA_R_16F with round to nearest on the input values A/B is performed when Tensor are used|
 
 2. 计算函数：
 
