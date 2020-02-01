@@ -104,12 +104,12 @@ cuBLAS函数库包含2类——功能函数和数学计算函数：
 
 - cublasSetMathMode /cublasGetMathMode：指示是否使用Volta GPU中的tensor core计算矩阵乘法。cuBLAS中共有6个函数可以支持tensor core的计算：cublasHgemm()， cublasHgemmBatched()，cublasHgemmStridedBatched()，cublasSgemm()，cublasSgemmEx()和cublasGemmEx()。对于不同的数据类型，tensor core支持的gemm函数情况如下：
 
-    |Atype/Btype|Ctype|computeType|alpha/beta|Support Functions when CUBLAS_TENSOR_OP_MATH is set|
+    |Atype/Btype|Ctype|computeType|alpha/beta|Support Functions when<br>CUBLAS_TENSOR_OP_MATH is set|
     |:---|:---|:---|:---|:---|
     |CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
     |CUDA_R_16F|CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
     |CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|cublasHgemm(), cublasHgemmBatched(),<br>cublasHgemmStridedBatched()|
-    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm, cublasGemmEx, cublasSgemmEx()<br>NOTE: A conversion from CUDA_R_32F to CUDA_R_16F with round to nearest on the input values A/B is performed when Tensor are used|
+    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm, cublasGemmEx, cublasSgemmEx()<br>NOTE: A conversion from CUDA_R_32F to CUDA_R_16F<br>with round to nearest on the input values A/B<br>is performed when Tensor are used|
 
 2. 计算函数：
 
