@@ -106,10 +106,10 @@ cuBLAS函数库包含2类——功能函数和数学计算函数：
 
     |Atype/Btype|Ctype|computeType|alpha/beta|Support Functions when<br>CUBLAS_TENSOR_OP_MATH is set|
     |:---|:---|:---|:---|:---|
-    |CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
-    |CUDA_R_16F|CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx, cublasSgemmEx()|
-    |CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|cublasHgemm(), cublasHgemmBatched(),<br>cublasHgemmStridedBatched()|
-    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm, cublasGemmEx, cublasSgemmEx()<br>NOTE: A conversion from CUDA_R_32F to CUDA_R_16F<br>with round to nearest on the input values A/B<br>is performed when Tensor are used|
+    |CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx,<br>cublasSgemmEx()|
+    |CUDA_R_16F|CUDA_R_16F|CUDA_R_32F|CUDA_R_32F|cublasGemmEx,<br>cublasSgemmEx()|
+    |CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|CUDA_R_16F|cublasHgemm(),<br>cublasHgemmBatched(),<br>cublasHgemmStridedBatched()|
+    |CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|CUDA_R_32F|cublasSgemm,<br>cublasGemmEx,<br>cublasSgemmEx()<br>NOTE: A conversion from CUDA_R_32F<br>to CUDA_R_16F with round to nearest<br>on the input values A/B<br>is performed when Tensor are used|
 
 2. 计算函数：
 
