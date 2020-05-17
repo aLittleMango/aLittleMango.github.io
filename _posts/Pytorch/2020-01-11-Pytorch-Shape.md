@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Pytorch Shape function
+title: Pytorch Tensor Shape
 category: Pytorch
 tags: pytorch
 keywords: Shape
