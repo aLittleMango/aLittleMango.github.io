@@ -7,6 +7,24 @@ keywords: Custom Layer
 description:
 ---
 
+## TensorRT
+
+1. 创建 Builder：构造器，后面一系列参数，后面所有的内容，一个最基本的容器
+
+2. 创建 Network：保存了网络的数据（参数、架构、权重等）
+
+3. 创建 Parser：解析器，解析网络（包含参数、架构、权重等），解析参数、权重到架构里，用于创建可执行的引擎。
+
+4. 绑定输入、输出以及自定义组件：输入、输出--可执行引擎位于 gpu 上，需要把数据从 cpu 传输 gpu 上，在传输的过程中需要先定义好 cpu 内存地址和 gpu 内存地址，绑定好固定的位置进行读写。自定义组件--不支持的网络层；
+
+5. 序列化或者反序列化：减少创建过程，跳过了1，2，3，4步。
+
+6. 传输计算数据（host->device）
+
+7. 执行计算
+
+8. 传输计算结果（device->host）
+
 ## Custom Layer 的实现
 
 Custom Layer 通过继承 IPlugin类，对 TensorRT 的五个阶段分别实现。
@@ -85,7 +103,7 @@ FCPlugin(const void* data, size_t length)
     mNbOutputChannels = read<int>(d);
     int biasCount = read<int>(d);
 
-    mKernelWeights = deserializeToDevice(d, 
+    mKernelWeights = deserializeToDevice(d,
                             mNbInputChannels * mNbOutputChannels);
     mBiasWeights = deserializeToDevice(d, biasCount);
     assert(d == a + length);
@@ -139,17 +157,17 @@ bool isPlugin(const char* name) override
     return !strcmp(name, "ip2");
 }
 
-virtual nvinfer1::IPlugin* createPlugin(const char* layerName, 
+virtual nvinfer1::IPlugin* createPlugin(const char* layerName,
                 const nvinfer1::Weights* weights, int nbWeights) override
 {
-    // there's no way to pass parameters through from the model definition, 
+    // there's no way to pass parameters through from the model definition,
     // so we have to define it here exlicitly
     static const int NB_OUT_CHANNELS = 10;
-    assert(isPlugin(layerName) && nbWeights == 2 && 
-                weights[0].type == DataType::kFLOAT && 
+    assert(isPlugin(layerName) && nbWeights == 2 &&
+                weights[0].type == DataType::kFLOAT &&
                 weights[1].type == DataType::kFLOAT);
     assert(mPlugin.get() == nullptr);
-    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(weights, nbWeights, 
+    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(weights, nbWeights,
                                         NB_OUTPUT_CHANNELS));
     return mPlugin.get();
 }
@@ -166,12 +184,12 @@ parser->setPluginFactory(pluginFactory);
 
 ```cpp
 // deserialization plugin implementation
-IPlugin* createPlugin(const char* layerName, const void* serialData, 
+IPlugin* createPlugin(const char* layerName, const void* serialData,
                       size_t serialLength) override
 {
     assert(isPlugin(layerName));
     assert(mPlugin.get() == nullptr);
-    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(serialData, 
+    mPlugin = std::unique_ptr<FCPlugin>(new FCPlugin(serialData,
                                         serialLength));
     return mPlugin.get();
 }
