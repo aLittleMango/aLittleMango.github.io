@@ -1,7 +1,7 @@
 ---
 layout: post
 title: git clone 速度很慢的解决方法
-category: Tools
+category: Git
 tags: git
 keywords: git
 description:
