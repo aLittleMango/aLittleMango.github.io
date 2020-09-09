@@ -3,7 +3,7 @@ layout: post
 title: Pytorch官方教程(二)—Data Loading and Processing Tutorial
 category: Pytorch
 tags: pytorch
-keywords: tutorial
+keywords: pytorch tutorial
 description:
 ---
 
@@ -42,9 +42,9 @@ plt.ion()   # interactive mode
 数据集附带一个 csv 文件，带有如下标注：
 
     image_name,part_0_x,part_0_y,part_1_x,part_1_y,part_2_x, ... ,part_67_x,part_67_y
-    
+
     0805personali01.jpg,27,83,27,98, ... 84,134
-    
+
     1084239450_e76e00b7e7.jpg,70,236,71,257, ... ,128,312
 
 读取 CSV 并将标注放入(N, 2)的数组中，其中 N 是关键点的数量。

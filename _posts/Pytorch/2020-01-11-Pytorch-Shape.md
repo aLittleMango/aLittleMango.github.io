@@ -3,7 +3,7 @@ layout: post
 title: Pytorch Tensor Shape
 category: Pytorch
 tags: pytorch
-keywords: Shape
+keywords: tensor-shape
 description:
 ---
 

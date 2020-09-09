@@ -3,7 +3,7 @@ layout: post
 title: Pytorch官方教程(四)—Transfer Learning Tutorial
 category: Pytorch
 tags: pytorch
-keywords: tutorial
+keywords: pytorch tutorial
 description:
 ---
 
@@ -258,12 +258,12 @@ model_ft = train_model(model_ft, criterion, optimizer_ft, exp_lr_scheduler,
     val Loss: 0.2514 Acc: 0.9020
 
     ...
-    
+
     Epoch 24/24
     ----------
     train Loss: 0.3563 Acc: 0.8320
     val Loss: 0.2286 Acc: 0.9020
-    
+
     Training complete in 1m 5s
     Best val Acc: 0.954248
 
@@ -310,12 +310,12 @@ model_conv = train_model(model_conv, criterion, optimizer_conv,
     val Loss: 0.3998 Acc: 0.8039
 
     ...
-    
+
     Epoch 24/24
     ----------
     train Loss: 0.3436 Acc: 0.8320
     val Loss: 0.2410 Acc: 0.9020
-    
+
     Training complete in 0m 53s
     Best val Acc: 0.954248
 

@@ -3,7 +3,7 @@ layout: post
 title: Pytorch官方教程(一)—A 60 Minute Biltz
 category: Pytorch
 tags: pytorch
-keywords: tutorial
+keywords: pytorch tutorial
 description:
 ---
 
@@ -614,7 +614,7 @@ print(loss)
     -> view -> linear -> relu -> linear -> relu -> linear<br>
     -> MSELoss<br>
     -> loss
-    
+
 调用 loss.backward()，整个图是关于 loss 的微分，在图中所有 requires_grad=True 的 Tensor，他们的 .grad Tensor 将会累积梯度。
 
 

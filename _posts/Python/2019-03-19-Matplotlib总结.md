@@ -2,7 +2,7 @@
 layout: post
 title: Matplotlib 总结
 category: Python
-tags: Python
+tags: python
 keywords: matplotlib
 description:
 ---

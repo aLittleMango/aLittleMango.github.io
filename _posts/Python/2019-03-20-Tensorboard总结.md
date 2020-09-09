@@ -2,7 +2,7 @@
 layout: post
 title: TensorBoard 总结
 category: Python
-tags: Python
+tags: python
 keywords: tensorboard
 description:
 ---

@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 添加python layer
+title: 添加 python layer
 category: Caffe
 tags: caffe
-keywords: python layer
+keywords: caffe 自定义
 description:
 ---
 

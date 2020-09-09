@@ -3,7 +3,7 @@ layout: post
 title: TorchScript 踩坑记录
 category: Pytorch
 tags: pytorch
-keywords: 踩坑
+keywords: torchscript
 description:
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: Pytorch官方教程(五)—Saving and Loading Models
 category: Pytorch
 tags: pytorch
-keywords: tutorial
+keywords: pytorch tutorial
 description:
 ---
 
@@ -167,16 +167,16 @@ for var_name in optimizer.state_dict():
 ```
 
     Model's state_dict:
-    conv1.weight                                      torch.Size([6, 3, 5, 5])                cpu       False     
-    conv1.bias                                        torch.Size([6])                         cpu       False     
-    conv2.weight                                      torch.Size([16, 6, 5, 5])               cpu       False     
-    conv2.bias                                        torch.Size([16])                        cpu       False     
-    fc1.weight                                        torch.Size([120, 400])                  cpu       False     
-    fc1.bias                                          torch.Size([120])                       cpu       False     
-    fc2.weight                                        torch.Size([84, 120])                   cpu       False     
-    fc2.bias                                          torch.Size([84])                        cpu       False     
-    fc3.weight                                        torch.Size([10, 84])                    cpu       False     
-    fc3.bias                                          torch.Size([10])                        cpu       False     
+    conv1.weight                                      torch.Size([6, 3, 5, 5])                cpu       False
+    conv1.bias                                        torch.Size([6])                         cpu       False
+    conv2.weight                                      torch.Size([16, 6, 5, 5])               cpu       False
+    conv2.bias                                        torch.Size([16])                        cpu       False
+    fc1.weight                                        torch.Size([120, 400])                  cpu       False
+    fc1.bias                                          torch.Size([120])                       cpu       False
+    fc2.weight                                        torch.Size([84, 120])                   cpu       False
+    fc2.bias                                          torch.Size([84])                        cpu       False
+    fc3.weight                                        torch.Size([10, 84])                    cpu       False
+    fc3.bias                                          torch.Size([10])                        cpu       False
     Optimizer's state_dict:
     state 	 {}
     param_groups 	 [{'lr': 0.001, 'params': [140049757854384, 140049757854960, 140049757855032, 140049757855104, 140049757401160, 140049757401232, 140049757401304, 140049757401376, 140049757401448, 140049757401520], 'weight_decay': 0, 'momentum': 0.9, 'nesterov': False, 'dampening': 0}]
