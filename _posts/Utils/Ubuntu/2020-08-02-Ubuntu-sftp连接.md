@@ -27,8 +27,10 @@ put new.txt /home/xieqi/  # 将本地当前目录下的 new.txt 上传到远程�
 ### 下载
 
 ```bash
-get /home/xieqi/new.txt #将远程主机的 /home/xieqi/new.txt 文件下载到本地当前目录
-get /home/xieqi/new.txt /home/zhao/#将远程主机的 /home/xieqi/new.txt 文件下载到本地 /home/zhao/ 目录
+get /home/xieqi/new.txt # 将远程主机的 /home/xieqi/new.txt 文件下载到本地当前目录
+get /home/xieqi/new.txt /home/zhao/ # 将远程主机的 /home/xieqi/new.txt 文件下载到本地 /home/zhao/ 目录
+
+get -r /opt/ini/.     # 将远程主机的 /opt/ini 目录下所有内容下载到本地当前目录
 ```
 
 ### 远程命令
