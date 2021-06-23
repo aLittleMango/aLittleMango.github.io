@@ -15,8 +15,9 @@ sudo groupadd docker
 sudo gpasswd -a ${USER} docker
 
 # 重启 docker 服务
+sudo systemctl daemon-reload
 sudo systemctl restart docker
 
-# 切换当前会话到新 group 或者重启 X 会话
+# 更新用户组
 newgrp  docker
 ```
