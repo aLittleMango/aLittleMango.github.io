@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pkg-config
-category: Utils
+category: Software
 tags: pkg-config
 keywords: pkg-config
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Cmake find_package
-category: C++
+category: cpp
 tags: cmake
 keywords: cmake
 description:

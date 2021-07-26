@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C/C++ 中 float & double 类型数据在内存中的存储形式
-category: C++
+category: cpp
 tags: C++
 keywords: 数据类型
 description:
