@@ -1,7 +1,7 @@
 ---
 layout: post
 title: docker 及 nvidia-docker 安装
-category: Utils
+category: Docker
 tags: docker
 keywords: docker
 description:

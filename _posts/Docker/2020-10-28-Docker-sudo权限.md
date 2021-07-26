@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Docker sudo 权限问题
-category: Utils
+category: Docker
 tags: docker
 keywords: docker
 description:
