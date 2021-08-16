@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 添加 python layer
+title: caffe 添加 python layer
 category: Caffe
 tags: caffe
 keywords: caffe 自定义
