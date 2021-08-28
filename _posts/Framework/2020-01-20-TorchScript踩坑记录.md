@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TorchScript 踩坑记录
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: torchscript
 description:

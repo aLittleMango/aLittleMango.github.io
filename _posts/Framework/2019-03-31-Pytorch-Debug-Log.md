@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch Debug Log
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: debug
 description:

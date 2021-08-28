@@ -1,8 +1,8 @@
 ---
 layout: post
-title: tfrecord数据集制作及读取
-category: Tensorflow
-tags: tensorflow
+title: Tensorflow tfrecord 数据集制作及读取
+category: Framework
+tags: Tensorflow
 keywords: tfrecord
 description: 以猫狗大战（分类）为例
 ---

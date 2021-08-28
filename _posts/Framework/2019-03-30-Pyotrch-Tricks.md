@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch Tricks
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: trick
 description:
@@ -36,7 +36,7 @@ loss.backward()
 print(net.conv1.bias.grad) # tensor([ 0.0181, -0.0048, -0.0229, -0.0138, -0.0088, -0.0107])
 ```
 
-## 4. reshape & view 
+## 4. reshape & view
 
 view 可以看成，先按行展开成一维 tensor 再转换成所需维度的 tensor。只能作用在连续的内存空间上. 并且不会对 tensor 进行复制。当它作用在非连续内存空间的 tensor 上时，会报错。
 reshape 可以作用在任何空间上，并且会在需要的时候创建 tenosr 的副本。

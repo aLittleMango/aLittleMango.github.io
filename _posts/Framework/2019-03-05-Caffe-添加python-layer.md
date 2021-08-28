@@ -1,17 +1,18 @@
 ---
 layout: post
-title: caffe 添加 python layer
-category: Caffe
-tags: caffe
-keywords: caffe 自定义
+title: Caffe 添加 python layer
+category: Framework
+tags: Caffe
+keywords: Caffe
 description:
 ---
 
 ## 前期工作
 
 - 设置WITH_PYTHON_LAYER := 1
+
 - 编译caffe
-- 编译caffe
+
 
 ## Example
 

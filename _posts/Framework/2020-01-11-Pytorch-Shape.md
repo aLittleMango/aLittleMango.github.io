@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch Tensor Shape
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: tensor-shape
 description:

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch官方教程(三)—Learning Pytorch with Examples
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: pytorch tutorial
 description:

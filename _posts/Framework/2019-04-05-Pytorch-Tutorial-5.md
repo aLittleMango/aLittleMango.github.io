@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch官方教程(五)—Saving and Loading Models
-category: Pytorch
+category: Framework
 tags: pytorch
 keywords: pytorch tutorial
 description:

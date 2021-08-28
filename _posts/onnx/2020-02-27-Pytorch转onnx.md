@@ -1,8 +1,8 @@
 ---
 layout: post
 title: pytorch -> onnx 问题汇总
-category: Pytorch
-tags: onnx pytorch
+category: onnx
+tags: onnx
 keywords: onnx
 description:
 ---
@@ -93,9 +93,9 @@ self.global_average = nn.AvgPool2d(kernel_size=(7, 7),stride=(7, 7), ceil_mode=F
 # 这两个公式转换为标准的 Max/AvgPooling
 
 # 只需要知道输入的input_size ，就可以推导出stride 与kernel_size ，从而替换为标准的Max/AvgPooling
- 
+
 stride = floor((input_size / (output_size)))
-kernel_size = input_size − (output_size − 1) * stride 
+kernel_size = input_size − (output_size − 1) * stride
 padding = 0
 ```
 
@@ -140,7 +140,7 @@ torch.onnx.export(model, ..., opset_version=11)
 ```
 UserWarning: You are trying to export the model with onnx:Upsample for ONNX opset version 9. This operator might cause results to not match the expected results by PyTorch.
 ONNX's Upsample/Resize operator did not match Pytorch's Interpolation until opset 11. Attributes to determine how to transform the input were added in onnx:Resize in opset 11 to support Pytorch's behavior (like coordinate_transformation_mode and nearest_mode).
-We recommend using opset 11 and above for models using this operator. 
+We recommend using opset 11 and above for models using this operator.
 
 UserWarning: ONNX export failed on upsample_bilinear2d because align_corners == True not supported
 
