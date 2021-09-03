@@ -1,8 +1,8 @@
 ---
 layout: post
 title: typora使用基础
-category: Python
-tags: Python
+category: Software
+tags: Software
 keywords: typora 使用
 description:
 ---
@@ -16,7 +16,7 @@ description:
 
 ***斜体加粗***，用前后，或者快捷键
 
-`<u>`下划线`</u>`，快捷键ctrl+u
+`<u>`下划线 `</u>`，快捷键ctrl+u
 
 ==高亮==，用前后==
 
@@ -72,5 +72,5 @@ public
 图片，格式为 `![提示文字](超链接/本地路径)`，或者 `<img src="jpg" style="zoom:50%">`可以调整大小
 
 <center>
-<img src="https://alittlemango.github.io/img/aLittleMango-icon.jpg" style="zoom:50%">
+<img src="https://alittlemango.github.io/img/aLittleMango-icon.jpg" style="zoom:20%">
 </center>
